@@ -5,5 +5,28 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Registration</h1>
+    <main class='container-fluid py-5'>
+        <div class='container'>
+
+            <h1 id='title' class='unselectable text-center'>Registration</h1>
+
+            <form action='auth/register' method='POST' id='registration-form'>
+                <div class="mb-3">
+                    <input class='form-control' type='text' name='username' id='username' placeholder='Enter a username' autocomplete='off' required>              
+                </div>
+                <div class="mb-3 text-center">
+                    <input class='form-control' type='password' name='password' id='password' placeholder='Enter a password' autocomplete='off' required>
+                    <span id="passwordHelp" class="form-text">Must be greater than 6 characters long.</span>
+                </div>
+                <div class="mb-3">  
+                    <input class='form-control' type='password' name='confirm' id='confirm' placeholder='Confirm a password' autocomplete='off' required>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="checkbox">
+                    <label class="form-check-label" for="checkbox">Keep logged?</label>
+                </div>
+                <button class="btn btn-primary" id="submit">Create</button>
+            </form> 
+        </div>
+    </main>
 {% endblock %}

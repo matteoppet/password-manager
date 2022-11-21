@@ -1,0 +1,35 @@
+/* ALl stuff */
+.unselectable {
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Registration stuff */
+@media (min-width: 500px) {
+    #registration-form {
+        width: 250px;
+        margin-right: auto !important;
+        margin-left: auto !important;
+    }
+}
+
+#title {
+    padding-top: 50px;
+    padding-bottom: 60px;
+    font-size: 50px;
+}
+
+#username, #confirm {
+    margin-bottom: 25px;
+}
+
+#submit {
+    margin-top: 25px;
+    height: 40px;
+    font-size: 15px;
+    width: -moz-available;
+    text-align: center;
+}
