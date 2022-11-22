@@ -7,9 +7,28 @@
     user-select: none;
 }
 
+
 /* Registration stuff */
+/* Modal register is the button in login page for open the modal */
+#modalRegister {
+    margin-top: 10px;
+    height: 40px;
+    font-size: 15px;
+    width: -moz-available;
+    text-align: center;
+}
+
+#confirm {
+    margin-top: -5px;
+}
+
+#status {
+    max-width: min-content;
+}
+
+/* Login Stuff */
 @media (min-width: 500px) {
-    #registration-form {
+    #login-form {
         width: 250px;
         margin-right: auto !important;
         margin-left: auto !important;
@@ -22,7 +41,7 @@
     font-size: 50px;
 }
 
-#username, #confirm, #checkbox {
+#username, #password {
     margin-bottom: 25px;
 }
 
@@ -33,5 +52,3 @@
     width: -moz-available;
     text-align: center;
 }
-
-/* Login Stuff */

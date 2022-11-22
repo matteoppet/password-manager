@@ -8,46 +8,66 @@
 <main class='container-fluid py-5'>
     <div class='container'>
 
-        <h1 id='title' class='unselectable text-center'>Registration</h1>
+        <h1 id='title' class='unselectable text-center'>Login</h1>
 
-        <form action='auth/register' method='POST' id='registration-form'>
-            <div class="mb-3">
-                <input class='form-control' type='text' name='username' id='username' placeholder='Enter a username' autocomplete='off' required>              
+        <form action='{{ url_for("auth.login") }}' method='POST' id='login-form'>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="username" name="username" placeholder="Enter a username" autocomplete='off' required>
+                <label for="username">Username</label>
             </div>
-            <div class="mb-3 text-center">
-                <input class='form-control' type='password' name='password' id='password' placeholder='Enter a password' autocomplete='off' required>
-                <span id="passwordHelp" class="form-text">Must be greater than 6 characters long.</span>
-            </div>
-            <div class="mb-3">  
-                <input class='form-control' type='password' name='confirm' id='confirm' placeholder='Confirm a password' autocomplete='off' required>
+            <div class="form-floating">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Enter a password" autocomplete='off' required>
+                <label for="password">Password</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="checkbox">
+                <input class="form-check-input" type="checkbox" value="1" id="checkbox">
                 <label class="form-check-label" for="checkbox">Keep logged?</label>
             </div>
             <button type="submit" class="btn btn-primary" id="submit">Login</button>
-            <button type="button" class="btn btn-outline-danger" id="submit" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Registration</button>
+            <button type="button" class="btn btn-outline-danger" id="modalRegister" data-bs-toggle="modal" data-bs-target="#BackdropRegister">Registration</button>
         </form> 
     </div>
 </main>
   
-  <!-- Modal -->
-  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<!-- Modal Registration -->
+<div class="modal fade" id="BackdropRegister" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="BackdropRegisterLabel">Registration Form</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action='{{ url_for("auth.register") }}' method='POST' id='registration-form'>
+                <div class="modal-body">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Enter a username" autocomplete='off' required>
+                        <label for="register-username">Username</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control" id="register-password" name="register-password" placeholder="Enter a password" onkeyup="passwordCheck();" autocomplete='off' required>
+                        <label for="register-password">Password</label>
+                        <div class="row g-3">
+                            <div class="col">
+                                <span id="passwordHelp" class="form-text">Must be greater than 8 characters long.</span>
+                            </div>
+                            <div class="col" id="status">
+                                <p class="form-text" id="check-password" name="check" style="text-align: end;">Status</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control" id="confirm" name="confirm" placeholder="Confirm the password" onkeyup="confirmCheck();" autocomplete='off' required>
+                        <label for="confirm">Confirm the password</label>
+                        <p class="form-text" id="check-confirm" name="check" style="text-align: end;">Status</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="s">Create</button>
+                </div>
+            </form>
         </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Understood</button>
-        </div>
-      </div>
     </div>
-  </div>
+</div>
   
 {% endblock %}
