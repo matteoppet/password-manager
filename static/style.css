@@ -22,7 +22,7 @@
     font-size: 50px;
 }
 
-#username, #confirm {
+#username, #confirm, #checkbox {
     margin-bottom: 25px;
 }
 
@@ -33,3 +33,5 @@
     width: -moz-available;
     text-align: center;
 }
+
+/* Login Stuff */
