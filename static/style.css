@@ -8,13 +8,15 @@
 }
 
 
-/* Registration stuff */
+/* Registration Modal stuff */
 /* Modal register is the button in login page for open the modal */
 #modalRegister {
     margin-top: 10px;
     height: 40px;
     font-size: 15px;
-    width: -moz-available;
+    width: -moz-available;          /* For Mozzila */
+    width: -webkit-fill-available;  /* For Chrome */
+    width: stretch;                 /* Unprefixed */
     text-align: center;
 }
 
@@ -46,9 +48,10 @@
 }
 
 #submit {
-    margin-top: 25px;
     height: 40px;
     font-size: 15px;
-    width: -moz-available;
+    width: -moz-available;          /* For Mozzila */
+    width: -webkit-fill-available;  /* For Chrome */
+    width: stretch;                 /* Unprefixed */
     text-align: center;
 }

@@ -1,17 +1,32 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask import Blueprint, render_template, request, redirect, url_for, flash, session
 from werkzeug.security import check_password_hash, generate_password_hash
 from app import db
 
+
 auth = Blueprint('auth', __name__)
+
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
+
+    session.clear()
+
     if request.method == "POST":
         username = request.form.get("username")
+        password = request.form.get("login-password")
+        keepLogged = request.form.get("checkbox")
 
-        print("Login Function: " + username)
+        search_user = db.execute("SELECT id, username, hash FROM users WHERE username = ?", username)
+
+        if len(search_user) != 1 or not check_password_hash(search_user[0]["hash"], password):
+            flash("Username or Password incorrect.", "error")
+        else:
+            session["user_id"] = search_user[0]["id"]
+
+            return redirect("/")
 
     return render_template('auth/login.html')
+
 
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
