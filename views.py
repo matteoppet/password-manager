@@ -10,3 +10,13 @@ views = Blueprint("views", __name__)
 @login_required
 def index():
     return render_template("index.html")
+
+
+def add():
+    return None
+
+def update():
+    return None
+
+def delete():
+    return None

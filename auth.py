@@ -55,3 +55,10 @@ def register():
         return redirect(url_for("auth.login"))
     
     return None
+
+@auth.route("/logout")
+def logout():
+
+    session.clear()
+
+    return redirect("auth.login")

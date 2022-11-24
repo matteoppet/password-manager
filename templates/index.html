@@ -1,5 +1,41 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-    <h1>Hello Everyone!</h1>
+    <div class="container" id="container-indexPage">
+        <div class="hstack gap-3">
+            <div><h1 style="font-size: 45px;">Passwords</h1></div>
+            <div class="ms-auto"><button class="btn btn-primary btn-lg"><span class="material-icons" id="addIcon" style="line-height: unset;">add</span></button></div>
+        </div>
+        <hr>
+        <span id="index-phrase" class="form-text">Passwords will be save in chronological order, from the most recent to the oldest</span>
+        <table class="table table-hover" id="table-passwords">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Site</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Example</td>
+                    <td>example@gmail.com</td>
+                    <td>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary">Open</button>
+                            <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="visually-hidden">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Modify</a></li>
+                                <li><a class="dropdown-item" href="#">Delete</a></li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

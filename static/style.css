@@ -28,6 +28,7 @@
     max-width: min-content;
 }
 
+
 /* Login Stuff */
 @media (min-width: 500px) {
     #login-form {
@@ -43,7 +44,7 @@
     font-size: 50px;
 }
 
-#username, #password {
+#username, #login-password {
     margin-bottom: 25px;
 }
 
@@ -53,5 +54,21 @@
     width: -moz-available;          /* For Mozzila */
     width: -webkit-fill-available;  /* For Chrome */
     width: stretch;                 /* Unprefixed */
+    text-align: center;
+}
+
+
+/* Index page Stuff */
+#container-indexPage {
+    padding-top: 40px;
+}
+
+#index-phrase {
+    font-size: 16px;
+    padding-top: 30px;
+}
+
+#table-passwords {
+    margin-top: 30px;
     text-align: center;
 }

@@ -12,6 +12,7 @@ function passwordCheck() {
     }
 }
 
+
 function confirmCheck() {
     const password = document.getElementById("register-password").value;
     const confirm = document.getElementById("confirm").value;
