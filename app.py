@@ -2,6 +2,8 @@ from flask import Flask, render_template, redirect, session
 from cs50 import SQL
 from flask_session import Session
 
+from datetime import timedelta
+
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '234/423/3wsd9/214asd/2asdj3w2'
@@ -10,7 +12,8 @@ app.config["TEMPLATES_AUTO_RELOAD"] = True
 
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
-Session(app)
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=1)
+Session(app) 
 
 
 db = SQL('sqlite:///database.db')

@@ -1,41 +1,91 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-    <div class="container" id="container-indexPage">
-        <div class="hstack gap-3">
-            <div><h1 style="font-size: 45px;">Passwords</h1></div>
-            <div class="ms-auto"><button class="btn btn-primary btn-lg"><span class="material-icons" style="line-height: unset;">add</span></button></div>
+    <main class='container-fluid py-5'>
+        <div class="container" id="container-indexPage">
+            <div class="hstack gap-3">
+                <div><h1 style="font-size: 45px;">Passwords</h1></div>
+                <div class="ms-auto">
+                    <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#addItemModal">
+                        <span class="material-icons" style="line-height: unset;">
+                            add
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <hr>
+            <span id="index-phrase" class="form-text">Passwords will be save in chronological order, from the most recent to the oldest</span>
+            <table class="table table-hover" id="table-passwords">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    {% for secret in passwords %}
+                        <tr>
+                            <th scope="row">{{ secret["name"] }}</th>
+                            <td>{{ secret["email"] }}</td>
+                            <td>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary">Open</button>
+                                    <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span class="visually-hidden">Toggle Dropdown</span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Modify</a></li>
+                                        <li><a class="dropdown-item" href="#">Delete</a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
-        <hr>
-        <span id="index-phrase" class="form-text">Passwords will be save in chronological order, from the most recent to the oldest</span>
-        <table class="table table-hover" id="table-passwords">
-            <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Site</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Actions</th>
-                </tr>
-            </thead>
-            <tbody class="table-group-divider">
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Example</td>
-                    <td>example@gmail.com</td>
-                    <td>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-primary">Open</button>
-                            <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                            <span class="visually-hidden">Toggle Dropdown</span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Modify</a></li>
-                                <li><a class="dropdown-item" href="#">Delete</a></li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    </main>
+      
+      <!-- Modal -->
+    <div class="modal fade" id="addItemModal" tabindex="-1" aria-labelledby="addItemModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="addItemModalLabel">Add Item</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+            <form action="{{ url_for('views.add') }}" method="POST">
+                <div class="modal-body">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter an name">
+                        <label for="name">Name</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="add-username" name="add-username" placeholder="Enter an username">
+                        <label for="add-username">Username</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="email" name="email" placeholder="Enter an email">
+                        <label for="add-username">Email</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="add-password" name="add-password" placeholder="Enter an password">
+                        <label for="add-password">Password</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <p class="form-text">We advice you to use at least one parameter of these for a password:<br/>6-8 characters minimum, a number, a capital letter, one or more special character/s.</a></p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Add</button>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      
+      
+  
 {% endblock %}

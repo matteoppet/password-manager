@@ -12,11 +12,11 @@
 
         <form action='{{ url_for("auth.login") }}' method='POST' id='login-form'>
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="username" name="username" placeholder="Enter a username" autocomplete='off' required>
+                <input type="text" class="form-control" id="username" name="username" placeholder="Enter an username" autocomplete='off' required>
                 <label for="username">Username</label>
             </div>
             <div class="form-floating">
-                <input type="password" class="form-control" id="login-password" name="login-password" placeholder="Enter a password" autocomplete='off' required>
+                <input type="password" class="form-control" id="login-password" name="login-password" placeholder="Enter an password" autocomplete='off' required>
                 <label for="password">Password</label>
             </div>
             <button type="submit" class="btn btn-primary" id="submit">Login</button>
@@ -36,11 +36,11 @@
             <form action='{{ url_for("auth.register") }}' method='POST' id='registration-form'>
                 <div class="modal-body">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="username" name="username" placeholder="Enter a username" autocomplete='off' required>
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Enter an username" autocomplete='off' required>
                         <label for="register-username">Username</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="password" class="form-control" id="register-password" name="register-password" placeholder="Enter a password" onkeyup="passwordCheck();" autocomplete='off' required>
+                        <input type="password" class="form-control" id="register-password" name="register-password" placeholder="Enter an password" onkeyup="passwordCheck();" autocomplete='off' required>
                         <label for="register-password">Password</label>
                         <div class="row g-3">
                             <div class="col">

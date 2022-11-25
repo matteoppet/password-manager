@@ -62,3 +62,5 @@ def logout():
     session.clear()
 
     return redirect("auth.login")
+
+    
