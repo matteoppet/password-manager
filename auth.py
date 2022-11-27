@@ -51,8 +51,8 @@ def register():
             db.execute("INSERT INTO users (username, hash) VALUES (?, ?)", username, hash)
 
             flash("Account Created Successfully.")
-
-        return redirect(url_for("auth.login"))
+        
+        return redirect("/login")
     
     return None
 
@@ -61,6 +61,6 @@ def logout():
 
     session.clear()
 
-    return redirect("auth.login")
+    return redirect(url_for("auth.login"))
 
     

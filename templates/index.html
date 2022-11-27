@@ -35,8 +35,8 @@
                                     <span class="visually-hidden">Toggle Dropdown</span>
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">Modify</a></li>
-                                        <li><a class="dropdown-item" href="#">Delete</a></li>
+                                        <li><button class="dropdown-item">Modify</button></li>
+                                        <li><a class="dropdown-item" href="{{ url_for('views.delete', id=secret['id'] )}}">Delete</a></li>
                                     </ul>
                                 </div>
                             </td>
@@ -47,7 +47,7 @@
         </div>
     </main>
       
-      <!-- Modal -->
+    <!-- Modal Add Item-->
     <div class="modal fade" id="addItemModal" tabindex="-1" aria-labelledby="addItemModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -82,10 +82,8 @@
                     <button type="submit" class="btn btn-success">Add</button>
                 </div>
             </form>
-          </div>
+            </div>
         </div>
-      </div>
-      
-      
-  
+    </div>
+
 {% endblock %}

@@ -33,3 +33,7 @@ def after_request(response):
     response.headers["Expires"] = 0
     response.headers["Pragma"] = "no-cache"
     return response
+
+
+if __name__ == '__main__':
+    app.run(debug=True)

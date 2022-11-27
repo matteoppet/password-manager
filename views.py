@@ -9,10 +9,8 @@ views = Blueprint("views", __name__)
 @views.route("/")
 @login_required
 def index():
+    passwords = db.execute("SELECT id, name, username, email, password, timestamp FROM secrets WHERE user_id = ? ORDER BY timestamp DESC", session["user_id"])
     
-    passwords = db.execute("SELECT name, username, email, password, timestamp FROM secrets WHERE user_id = ? ORDER BY timestamp DESC", session["user_id"])
-    
-
     return render_template("index.html", passwords=passwords)
 
 
@@ -45,6 +43,11 @@ def add():
 def update():
     return None
 
+@views.route("/delete/<int:id>")
+def delete(id):
 
-def delete():
-    return None
+    db.execute("DELETE FROM secrets WHERE id = ? AND user_id = ?", id, session["user_id"])
+
+    flash("Item Deleted Successfully.")
+
+    return redirect("/")
