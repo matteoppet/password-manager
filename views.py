@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash, session
+from flask import Blueprint, render_template, request, redirect, url_for, flash, session, jsonify
 from app import db
 from helper import login_required
 
@@ -37,17 +37,19 @@ def add():
 
             return redirect(url_for("views.index"))
 
-    return None
+    return redirect(url_for("views.index"))
 
 
 def update():
     return None
 
-@views.route("/delete/<int:id>")
+
+@views.route("/delete/<int:id>", methods=["GET", "POST"])
 def delete(id):
 
-    db.execute("DELETE FROM secrets WHERE id = ? AND user_id = ?", id, session["user_id"])
 
-    flash("Item Deleted Successfully.")
+    db.execute("DELETE FROM secrets WHERE id=? AND user_id=?", id, session["user_id"])
+
+    flash("Item deleted Successfully.")
 
     return redirect("/")
