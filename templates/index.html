@@ -86,4 +86,42 @@
         </div>
     </div>
 
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="addItemModalLabel">Add Item</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+            <form action="{{ url_for('views.add') }}" method="POST">
+                <div class="modal-body">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter an name">
+                        <label for="name">Name</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="add-username" name="add-username" placeholder="Enter an username">
+                        <label for="add-username">Username</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="email" name="email" placeholder="Enter an email">
+                        <label for="add-username">Email</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="add-password" name="add-password" placeholder="Enter an password">
+                        <label for="add-password">Password</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <p class="form-text">We advice you to use at least one parameter of these for a password:<br/>6-8 characters minimum, a number, a capital letter, one or more special character/s.</a></p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Add</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}

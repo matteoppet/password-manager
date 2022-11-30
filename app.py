@@ -4,6 +4,8 @@ from flask_session import Session
 
 from datetime import timedelta
 
+
+# Setup Flask App
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '234/423/3wsd9/214asd/2asdj3w2'
 

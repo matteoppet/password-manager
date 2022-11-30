@@ -45,11 +45,12 @@ def update():
 
 
 @views.route("/delete/<int:id>", methods=["GET", "POST"])
+@login_required
 def delete(id):
 
+    if request.method == "POST":
+        db.execute("DELETE FROM secrets WHERE id=? AND user_id=?", id, session["user_id"])
 
-    db.execute("DELETE FROM secrets WHERE id=? AND user_id=?", id, session["user_id"])
-
-    flash("Item deleted Successfully.")
-
-    return redirect("/")
+        return redirect(url_for("views.index"))
+    
+    return None

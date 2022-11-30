@@ -1,4 +1,5 @@
 function passwordCheck() {
+    
     const password = document.getElementById("register-password").value;
     const check = document.getElementById("check-password");
 
@@ -14,6 +15,7 @@ function passwordCheck() {
 
 
 function confirmCheck() {
+
     const password = document.getElementById("register-password").value;
     const confirm = document.getElementById("confirm").value;
     const check = document.getElementById("check-confirm");
@@ -30,12 +32,23 @@ function confirmCheck() {
 
 
 function deleteItem(value) {
-
-    let askConfirm = confirm("Are you sure you want to delete the password?")
+    
+    let askConfirm = confirm("Are you sure you want to delete the password?");
 
     if (askConfirm === true) {
-        const request = new XMLHttpRequest()
-        request.open('POST', `/delete/${value}`)
-        request.send();
+        $.ajax({
+            type:'POST',
+            url: `/delete/${value}`,
+            success:function()
+            {
+                alert('Item Deleted Successfully');
+                location.reload(true); 
+            },
+            error:function()
+            {
+                alert('Error Deleting the Item');
+                location.reload(true)
+            }
+        })
     }
 }
