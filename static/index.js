@@ -1,5 +1,5 @@
 function passwordCheck() {
-    
+
     const password = document.getElementById("register-password").value;
     const check = document.getElementById("check-password");
 
