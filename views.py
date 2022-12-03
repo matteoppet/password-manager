@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash, session
+from flask import Blueprint, render_template, request, redirect, url_for, flash, session, jsonify
 from app import db
 from helper import login_required
 
@@ -63,10 +63,6 @@ def update(id):
 @views.route("/vault-item/<int:id>", methods=["GET", "POST"])
 @login_required
 def secret(id):
-
-    if request.method == "POST":
-        return redirect(url_for('views.index'))
-
     secrets = db.execute("SELECT id, name, username, email, password, timestamp FROM secrets WHERE id=?", id)
 
     return render_template('secret.html', secrets=secrets)
