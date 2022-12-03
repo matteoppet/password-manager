@@ -29,7 +29,7 @@ def add():
                 check = 1
 
         if check == 1:
-            flash("Name/Site already inside in the table.", "error")
+            flash("Name already inside in the table.", "error")
         else:
             db.execute("INSERT INTO secrets (name, username, email, password, timestamp, user_id) VALUES (?, ?, ?, ?, datetime('now'), ?)", name, username, email, password, session["user_id"])
 
@@ -40,8 +40,36 @@ def add():
     return redirect(url_for("views.index"))
 
 
-def update():
-    return None
+@views.route("/update-item/<int:id>", methods=["GET", "POST"])
+@login_required
+def update(id):
+    if request.method == "POST":
+        name = request.form.get("name")
+        username = request.form.get("username")
+        email = request.form.get("email")
+        password = request.form.get("password")
+
+        db.execute("UPDATE secrets SET name = ?, username = ?, email = ?, password = ?, timestamp = datetime('now') WHERE id = ? AND user_id = ?", name, username, email, password, id, session["user_id"])
+
+        flash("Item Updated Successfully")
+
+        return redirect(url_for("views.index"))
+
+    secrets = db.execute("SELECT name, username, email, password, timestamp FROM secrets WHERE id=?", id)
+
+    return render_template("update.html", secrets=secrets)
+
+
+@views.route("/vault-item/<int:id>", methods=["GET", "POST"])
+@login_required
+def secret(id):
+
+    if request.method == "POST":
+        return redirect(url_for('views.index'))
+
+    secrets = db.execute("SELECT id, name, username, email, password, timestamp FROM secrets WHERE id=?", id)
+
+    return render_template('secret.html', secrets=secrets)
 
 
 @views.route("/delete/<int:id>", methods=["GET", "POST"])

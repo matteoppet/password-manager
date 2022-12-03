@@ -52,3 +52,12 @@ function deleteItem(value) {
         })
     }
 }
+
+
+function copyToClipboard(value) {
+    navigator.clipboard.writeText(value).then(function() {
+        alert('Copying to clipboard was successful!');
+      }, function(err) {
+        alert('Async: Could not copy text: ', err);
+    });
+}

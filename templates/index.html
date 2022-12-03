@@ -1,5 +1,9 @@
 {% extends 'layout.html' %}
 
+{% block title %}
+    Vault
+{% endblock %}
+
 {% block body %}
     <main class='container-fluid py-5'>
         <div class="container" id="container-indexPage">
@@ -14,7 +18,7 @@
                 </div>
             </div>
             <hr>
-            <span id="index-phrase" class="form-text">Passwords will be save in chronological order, from the most recent to the oldest</span>
+            <span id="index-phrase" class="form-text">Passwords will be saved in chronological order, from the most recent to the oldest</span>
             <table class="table table-hover" id="table-passwords">
                 <thead>
                     <tr>
@@ -30,12 +34,12 @@
                             <td>{{ secret["email"] }}</td>
                             <td>
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-primary">Open</button>
+                                    <a class="btn btn-primary" href="{{ url_for('views.secret', id=secret['id']) }}">Open</a>
                                     <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
                                     <span class="visually-hidden">Toggle Dropdown</span>
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li><button class="dropdown-item">Modify</button></li>
+                                        <li><a class="dropdown-item" id="updateButton" href="{{ url_for('views.update', id=secret['id']) }}">Modify</a></li>
                                         <li><button class="dropdown-item" id="deleteButton" value="{{ secret['id'] }}" onclick="deleteItem(this.value);">Delete</button></li>
                                     </ul>
                                 </div>
@@ -123,5 +127,4 @@
             </div>
         </div>
     </div>
-
 {% endblock %}
