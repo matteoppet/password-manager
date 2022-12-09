@@ -78,3 +78,14 @@ def delete(id):
         return redirect(url_for("views.index"))
     
     return None
+
+
+@views.route("/profile", methods=["GET", "POST"])
+def profile():
+
+    if request.method == "POST":
+        pass
+
+    informationCurrentUser = db.execute("SELECT username, hash FROM users WHERE id = ?", session["user_id"])
+
+    return render_template("profile.html")

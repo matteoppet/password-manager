@@ -2,6 +2,8 @@ from flask import Flask, render_template, redirect, session
 from cs50 import SQL
 from flask_session import Session
 
+from cryptography.fernet import Fernet
+
 from datetime import timedelta
 
 
@@ -28,12 +30,9 @@ app.register_blueprint(auth, url_prefix="/")
 app.register_blueprint(views, url_prefix="/")
 
 
-@app.after_request
-def after_request(response):
-    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
-    response.headers["Expires"] = 0
-    response.headers["Pragma"] = "no-cache"
-    return response
+# Instances for cryptography library.
+key = Fernet.generate_key()
+fernet = Fernet(key)
 
 
 if __name__ == '__main__':

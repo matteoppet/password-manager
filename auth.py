@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash, session
 from werkzeug.security import check_password_hash, generate_password_hash
 from app import db
-from helper import login_required
+from helper import login_required, encryption, decryption
 
 
 auth = Blueprint('auth', __name__)
@@ -17,12 +17,22 @@ def login():
         password = request.form.get("login-password")
         keepLogged = request.form.get("checkbox")
 
-        search_user = db.execute("SELECT id, username, hash FROM users WHERE username = ?", username)
+        searchUser = db.execute("SELECT id, password FROM users WHERE username = ?", username)
 
-        if len(search_user) != 1 or not check_password_hash(search_user[0]["hash"], password):
+        encryptedPassword = None
+        for i in searchUser:
+            encryptedPassword = i['password']
+            id = i["id"]
+
+
+        if encryptedPassword != None:
+            decryptedPassword = decryption(encryptedPassword).decode()
+
+
+        if len(searchUser) != 1 or password != decryptedPassword:
             flash("Username or Password incorrect.", "error")
         else:
-            session["user_id"] = search_user[0]["id"]
+            session["user_id"] = id
 
             return redirect("/")
 
@@ -48,14 +58,19 @@ def register():
         elif password != confirm:
             flash("Passwords doesn't match.", "error")
         else:
-            hash = generate_password_hash(password)
-            db.execute("INSERT INTO users (username, hash) VALUES (?, ?)", username, hash)
+
+            encryptedPassword = encryption(password)
+
+            db.execute("INSERT INTO users (username, password) VALUES (?, ?)", username, encryptedPassword)
 
             flash("Account Created Successfully.")
+
+            return redirect(url_for('auth.login'))
         
-        return redirect("/login")
+        return redirect(url_for('auth.login'))
     
     return None
+
 
 @auth.route("/logout")
 @login_required

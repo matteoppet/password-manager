@@ -14,3 +14,28 @@ def login_required(f):
             return redirect("/login")
         return f(*args, **kwargs)
     return decorated_function
+
+
+
+from cryptography.fernet import Fernet
+import base64
+
+
+cipher_suite = Fernet(base64.urlsafe_b64encode(b'12345678901234567890123456789012'))
+encoding = "utf-8"
+
+
+def encryption(messageToEncrypt):
+    
+    encodedMessage = bytes(messageToEncrypt, encoding)
+
+    encryptedMessage = cipher_suite.encrypt(encodedMessage)
+
+    return encryptedMessage
+
+
+def decryption(messageToDecrypt):
+    
+    decryptedMessage = cipher_suite.decrypt(messageToDecrypt)
+
+    return decryptedMessage
