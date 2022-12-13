@@ -27,9 +27,9 @@ encoding = "utf-8"
 
 def encryption(messageToEncrypt):
     
-    encodedMessage = bytes(messageToEncrypt, encoding)
+    messageToEncode = bytes(messageToEncrypt, encoding)
 
-    encryptedMessage = cipher_suite.encrypt(encodedMessage)
+    encryptedMessage = cipher_suite.encrypt(messageToEncode)
 
     return encryptedMessage
 

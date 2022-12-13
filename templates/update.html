@@ -6,7 +6,7 @@
 
 {% block body %}
 <main class='container-fluid py-5'>
-    <div class="container" id="container-indexPage">
+    <div class="container">
         <form method="POST" id="updateForm">
         <div class="hstack gap-3">
             <div><h1 style="font-size: 45px;">Update Item</h1></div>
@@ -52,8 +52,8 @@
         <div class="mb-3" id="inputs">
             <label class="form-label">Password</label>
             <div class="form-floating">
-                <input type="text" class="form-control" id="password" name="password" placeholder="Enter an password" value="{{ secret['password'] }}">
-                <label for="password" class="text-secondary">{{ secret['password'] }}</label>
+                <input type="text" class="form-control" id="password" name="password" placeholder="Enter an password" value="{{ decryptedPassword }}">
+                <label for="password" class="text-secondary">{{ decryptedPassword }}</label>
             </div>
         </div>
         <div class="mb-3" id="inputs">

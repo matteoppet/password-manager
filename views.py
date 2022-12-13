@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash, session, jsonify
 from app import db
-from helper import login_required
+from helper import login_required, encryption, decryption
 
 
 views = Blueprint("views", __name__)
@@ -31,7 +31,10 @@ def add():
         if check == 1:
             flash("Name already inside in the table.", "error")
         else:
-            db.execute("INSERT INTO secrets (name, username, email, password, timestamp, user_id) VALUES (?, ?, ?, ?, datetime('now'), ?)", name, username, email, password, session["user_id"])
+            
+            passwordEncrypted = encryption(password)
+
+            db.execute("INSERT INTO secrets (name, username, email, password, timestamp, user_id) VALUES (?, ?, ?, ?, datetime('now'), ?)", name, username, email, passwordEncrypted, session["user_id"])
 
             flash("Item added Successfully.")
 
@@ -49,7 +52,9 @@ def update(id):
         email = request.form.get("email")
         password = request.form.get("password")
 
-        db.execute("UPDATE secrets SET name = ?, username = ?, email = ?, password = ?, timestamp = datetime('now') WHERE id = ? AND user_id = ?", name, username, email, password, id, session["user_id"])
+        encryptedPassword = encryption(password)
+
+        db.execute("UPDATE secrets SET name = ?, username = ?, email = ?, password = ?, timestamp = datetime('now') WHERE id = ? AND user_id = ?", name, username, email, encryptedPassword, id, session["user_id"])
 
         flash("Item Updated Successfully")
 
@@ -57,7 +62,9 @@ def update(id):
 
     secrets = db.execute("SELECT name, username, email, password, timestamp FROM secrets WHERE id=?", id)
 
-    return render_template("update.html", secrets=secrets)
+    decryptedPassword = decryption(secrets[0]["password"]).decode()
+
+    return render_template("update.html", secrets=secrets, decryptedPassword=decryptedPassword)
 
 
 @views.route("/vault-item/<int:id>", methods=["GET", "POST"])
@@ -65,7 +72,9 @@ def update(id):
 def secret(id):
     secrets = db.execute("SELECT id, name, username, email, password, timestamp FROM secrets WHERE id=?", id)
 
-    return render_template('secret.html', secrets=secrets)
+    decryptedPassword = decryption(secrets[0]["password"]).decode()
+
+    return render_template('secret.html', secrets=secrets, decryptedPassword=decryptedPassword)
 
 
 @views.route("/delete/<int:id>", methods=["GET", "POST"])
@@ -81,11 +90,28 @@ def delete(id):
 
 
 @views.route("/profile", methods=["GET", "POST"])
+@login_required
 def profile():
 
     if request.method == "POST":
         pass
 
-    informationCurrentUser = db.execute("SELECT username, hash FROM users WHERE id = ?", session["user_id"])
+    informationCurrentUser = db.execute("SELECT username, password FROM users WHERE id = ?", session["user_id"])
 
-    return render_template("profile.html")
+    decryptedPassword = decryption(informationCurrentUser[0]["password"]).decode()
+
+    return render_template("profile.html", informationCurrentUser=informationCurrentUser, decryptedPassword=decryptedPassword)
+
+
+@views.route("/update-profile", methods=["GET", "POST"])
+@login_required
+def updateProfile():
+
+    if request.method == "POST":
+        pass
+
+    informationCurrentUser = db.execute("SELECT username, password FROM users WHERE id = ?", session["user_id"])
+
+    decryptedPassword = decryption(informationCurrentUser[0]["password"]).decode()
+
+    return render_template("update-profile.html", informationCurrentUser=informationCurrentUser, decryptedPassword=decryptedPassword)
