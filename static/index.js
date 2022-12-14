@@ -61,3 +61,21 @@ function copyToClipboard(value) {
         alert('Async: Could not copy text: ', err);
     });
 }
+
+
+function deleteUser(value) {
+    
+    let askConfirm = confirm("Are you sure you want to delete your profile?");
+
+    if (askConfirm === true) {
+        $.ajax({
+            type:'POST',
+            url: `/delete-user/${value}`,
+            success:function()
+            {
+                alert('Item Deleted Successfully');
+                location.reload(true); 
+            },
+        })
+    }
+}

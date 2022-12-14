@@ -33,7 +33,6 @@
 }
 
 
-
 /* ----------- 
    Login Stuff 
    ----------- */
@@ -63,7 +62,6 @@
     width: stretch;                 /* Unprefixed */
     text-align: center;
 }
-
 
 
 /* ----------- 
@@ -98,6 +96,7 @@
         margin-bottom: 25px;
     }
 }
+
 
 /* ------------ 
    Profile Stuff 

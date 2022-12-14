@@ -72,7 +72,10 @@ def update(id):
 def secret(id):
     secrets = db.execute("SELECT id, name, username, email, password, timestamp FROM secrets WHERE id=?", id)
 
-    decryptedPassword = decryption(secrets[0]["password"]).decode()
+    try:
+        decryptedPassword = decryption(secrets[0]["password"]).decode()
+    except IndexError:
+        return redirect(url_for("views.index"))
 
     return render_template('secret.html', secrets=secrets, decryptedPassword=decryptedPassword)
 
@@ -92,11 +95,7 @@ def delete(id):
 @views.route("/profile", methods=["GET", "POST"])
 @login_required
 def profile():
-
-    if request.method == "POST":
-        pass
-
-    informationCurrentUser = db.execute("SELECT username, password FROM users WHERE id = ?", session["user_id"])
+    informationCurrentUser = db.execute("SELECT id, username, password FROM users WHERE id = ?", session["user_id"])
 
     decryptedPassword = decryption(informationCurrentUser[0]["password"]).decode()
 
@@ -108,10 +107,48 @@ def profile():
 def updateProfile():
 
     if request.method == "POST":
-        pass
+        username = request.form.get("username")
+        password = request.form.get("password")
+        confirm = request.form.get("confirm")
+
+        checkUsername = []
+        for i in db.execute("SELECT username FROM users WHERE username = ?", username):
+            checkUsername.append(i["username"])
+
+        if username in checkUsername:
+            flash("Username already taken.", "error")
+        elif len(password) < 8:
+            flash("Password must be greater than 7 characters long.", "error")
+        elif password != confirm:
+            flash("Passwords doesn't match.", "error")
+        else:
+            encryptedPassword = encryption(password)
+
+            db.execute("UPDATE users SET username = ?, password = ? WHERE id = ?", username, encryptedPassword, session["user_id"])
+
+            flash("User Updated Successfully")
+
+            return redirect(url_for('views.profile'))
 
     informationCurrentUser = db.execute("SELECT username, password FROM users WHERE id = ?", session["user_id"])
 
     decryptedPassword = decryption(informationCurrentUser[0]["password"]).decode()
 
     return render_template("update-profile.html", informationCurrentUser=informationCurrentUser, decryptedPassword=decryptedPassword)
+
+
+@views.route("/delete-user/<int:id>", methods=["GET", "POST"])
+@login_required
+def deleteUser(id):
+    
+    if request.method == "POST":
+        db.execute("DELETE FROM users WHERE id = ?", id)
+        db.execute("DELETE FROM secrets WHERE user_id = ?", id)
+
+        return redirect(url_for("auth.login"))
+
+    return None
+
+
+def search():
+    pass 

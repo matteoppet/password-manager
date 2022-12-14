@@ -10,45 +10,37 @@
     <main class='container-fluid py-5'>
         <div class="container">
             <div class="hstack gap-3">
-                {% block subTitle %}
-                    {% for username in informationCurrentUser %}
-                        <div><h1 style="font-size: 45px;">Welcome to your profile: {{ username["username"] }} <span>👋</span></h1></div>
-                    {% endfor %}
-                {% endblock %}
-                {% block changeButton %}
-                    <div class="ms-auto">
-                        <a href="/update-profile" type="button" class="btn btn-warning btn-lg">
-                            <span class="material-icons" style="line-height: unset;">
-                                    edit
-                            </span>
-                        </a>
-                    </div>
-                {% endblock %}
+                {% for username in informationCurrentUser %}
+                    <div><h1 style="font-size: 45px;">Welcome to your profile: {{ username["username"] }} <span>👋</span></h1></div>
+                {% endfor %}
+                <div class="ms-auto">
+                    <a href="{{ url_for('views.updateProfile') }}" type="button" class="btn btn-warning btn-lg">
+                        <span class="material-icons" style="line-height: unset;">
+                            edit
+                        </span>
+                    </a>
+                </div>
             </div>
             <hr>
-
-            {% block updateUser %}
-
-            <table class="table table-hover table-bordered border" id="table-user">
-                <thead>
-                    <tr>
-                        <th scope="col">Username</th>
-                        <th scope="col">Password</th>
-                    </tr>
-                </thead>
-                <tbody class="table-group-divider">
-                    {% for data in informationCurrentUser %}
+            
+            {% for data in informationCurrentUser %}
+                <table class="table table-hover table-bordered border" id="table-user">
+                    <thead>
                         <tr>
-                            <td>{{ data["username"] }}</td>
-                            <td>{{ decryptedPassword }}</td>
+                            <th scope="col">Username</th>
+                            <th scope="col">Password</th>
                         </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-            <hr>
-            <button type="button" class="btn btn-danger" id="deleteUser">Delete User</button>
-
-            {% endblock %}
+                    </thead>
+                    <tbody class="table-group-divider">
+                            <tr>
+                                <td>{{ data["username"] }}</td>
+                                <td>{{ decryptedPassword }}</td>
+                            </tr>
+                    </tbody>
+                </table>
+                <hr>
+                <button type="button" class="btn btn-danger" id="deleteUser" value="{{ data['id'] }}" onclick="deleteUser(this.value);">Delete User</button>
+            {% endfor %}
         </div>
     </main>
 {% endblock %}
