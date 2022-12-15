@@ -150,5 +150,15 @@ def deleteUser(id):
     return None
 
 
+@views.route("/search", methods=["GET", "POST"])
+@login_required
 def search():
-    pass 
+
+    if request.method == "POST":
+        nameSite = request.form.get("search")
+
+        itemSearched = db.execute("SELECT * FROM secrets WHERE user_id = ? and name = ?", session["user_id"], nameSite)
+
+        return render_template("searched.html", itemSearched=itemSearched)
+
+    return None
