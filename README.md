@@ -13,6 +13,8 @@ Video demo with all the explanations:
 
 ## Roadmap
 
+- A URL for the site
+
 - More security on site
 
 - Dark and Light themes
