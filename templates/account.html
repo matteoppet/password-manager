@@ -2,7 +2,7 @@
 
 {% block title %}
     {% for username in informationCurrentUser %}
-        Profile: {{ username["username"] }} 
+        Account: {{ username["username"] }} 
     {% endfor %}
 {% endblock %}
 
@@ -11,10 +11,10 @@
         <div class="container">
             <div class="hstack gap-3">
                 {% for username in informationCurrentUser %}
-                    <div><h1 style="font-size: 45px;">Welcome to your profile: {{ username["username"] }} <span>👋</span></h1></div>
+                    <div><h1 style="font-size: 45px;">Welcome to your account: {{ username["username"] }}</h1></div>
                 {% endfor %}
                 <div class="ms-auto">
-                    <a href="{{ url_for('views.updateProfile') }}" type="button" class="btn btn-warning btn-lg">
+                    <a href="{{ url_for('views.updateAccount') }}" type="button" class="btn btn-warning btn-lg">
                         <span class="material-icons" style="line-height: unset;">
                             edit
                         </span>
@@ -42,9 +42,9 @@
 
                 <div class="card" style="margin-top: 40px;">
                     <div class="card-body">
-                        <h5 class="card-title">Delete User</h5>
-                        <p class="card-text">By deleting the user you will lose any saved password and it will not be possible to recover it.</p>
-                        <button type="button" class="btn btn-danger" id="deleteUser" value="{{ data['id'] }}" onclick="deleteUser(this.value);">Delete User</button>
+                        <h5 class="card-title">Delete Account</h5>
+                        <p class="card-text">By deleting the account you will lose any saved password and it will not be possible to recover it.</p>
+                        <button type="button" class="btn btn-danger" id="deleteUser" value="{{ data['id'] }}" onclick="deleteAccount(this.value);">Delete Account</button>
                     </div>
                 </div>
             {% endfor %}

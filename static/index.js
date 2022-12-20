@@ -63,17 +63,17 @@ function copyToClipboard(value) {
 }
 
 
-function deleteUser(value) {
+function deleteAccount(value) {
     
-    let askConfirm = confirm("Are you sure you want to delete your profile?");
+    let askConfirm = confirm("Are you sure you want to delete your account?");
 
     if (askConfirm === true) {
         $.ajax({
             type:'POST',
-            url: `/delete-user/${value}`,
+            url: `/delete-account/${value}`,
             success:function()
             {
-                alert('Item Deleted Successfully');
+                alert('Account Deleted Successfully');
                 location.reload(true); 
             },
         })

@@ -92,19 +92,19 @@ def delete(id):
     return None
 
 
-@views.route("/profile", methods=["GET", "POST"])
+@views.route("/account", methods=["GET", "POST"])
 @login_required
-def profile():
+def account():
     informationCurrentUser = db.execute("SELECT id, username, password FROM users WHERE id = ?", session["user_id"])
 
     decryptedPassword = decryption(informationCurrentUser[0]["password"]).decode()
 
-    return render_template("profile.html", informationCurrentUser=informationCurrentUser, decryptedPassword=decryptedPassword)
+    return render_template("account.html", informationCurrentUser=informationCurrentUser, decryptedPassword=decryptedPassword)
 
 
-@views.route("/update-profile", methods=["GET", "POST"])
+@views.route("/update-account", methods=["GET", "POST"])
 @login_required
-def updateProfile():
+def updateAccount():
 
     if request.method == "POST":
         username = request.form.get("username")
@@ -133,18 +133,18 @@ def updateProfile():
 
             flash("User Updated Successfully")
 
-            return redirect(url_for('views.profile'))
+            return redirect(url_for('views.account'))
 
     informationCurrentUser = db.execute("SELECT username, password FROM users WHERE id = ?", session["user_id"])
 
     decryptedPassword = decryption(informationCurrentUser[0]["password"]).decode()
 
-    return render_template("update-profile.html", informationCurrentUser=informationCurrentUser, decryptedPassword=decryptedPassword)
+    return render_template("update-account.html", informationCurrentUser=informationCurrentUser, decryptedPassword=decryptedPassword)
 
 
-@views.route("/delete-user/<int:id>", methods=["GET", "POST"])
+@views.route("/delete-account/<int:id>", methods=["GET", "POST"])
 @login_required
-def deleteUser(id):
+def deleteAccount(id):
     
     if request.method == "POST":
         db.execute("DELETE FROM users WHERE id = ?", id)
