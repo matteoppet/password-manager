@@ -39,7 +39,14 @@
                     </tbody>
                 </table>
                 <hr>
-                <button type="button" class="btn btn-danger" id="deleteUser" value="{{ data['id'] }}" onclick="deleteUser(this.value);">Delete User</button>
+
+                <div class="card" style="margin-top: 40px;">
+                    <div class="card-body">
+                        <h5 class="card-title">Delete User</h5>
+                        <p class="card-text">By deleting the user you will lose any saved password and it will not be possible to recover it.</p>
+                        <button type="button" class="btn btn-danger" id="deleteUser" value="{{ data['id'] }}" onclick="deleteUser(this.value);">Delete User</button>
+                    </div>
+                </div>
             {% endfor %}
         </div>
     </main>

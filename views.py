@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash, session, jsonify
+from flask import Blueprint, render_template, request, redirect, url_for, flash, session
 from app import db
 from helper import login_required, encryption, decryption
 
@@ -111,13 +111,18 @@ def updateProfile():
         password = request.form.get("password")
         confirm = request.form.get("confirm")
 
-        checkUsername = []
-        for i in db.execute("SELECT username FROM users WHERE username = ?", username):
-            checkUsername.append(i["username"])
+        checkUsername = {}
+        for i in db.execute("SELECT id, username FROM users WHERE username = ?", username):
+            checkUsername["id"] = i["id"]
+            checkUsername["username"] = i["username"]
 
-        if username in checkUsername:
-            flash("Username already taken.", "error")
-        elif len(password) < 8:
+        try: 
+            if checkUsername["id"] != session["user_id"]:  
+                flash("Username already taken.", "error")
+        except KeyError:
+            pass
+
+        if len(password) < 8:
             flash("Password must be greater than 7 characters long.", "error")
         elif password != confirm:
             flash("Passwords doesn't match.", "error")
@@ -157,8 +162,13 @@ def search():
     if request.method == "POST":
         nameSite = request.form.get("search")
 
-        itemSearched = db.execute("SELECT * FROM secrets WHERE user_id = ? and name = ?", session["user_id"], nameSite)
+        itemSearched = db.execute("SELECT * FROM secrets WHERE user_id = ? AND name = ? OR email = ?", session["user_id"], nameSite, nameSite)
 
-        return render_template("searched.html", itemSearched=itemSearched)
+        if itemSearched == []:
+            flash("No items were found that match your search pattern", "error")
+
+            return redirect(url_for("views.index"))
+
+        return render_template("searched.html", itemSearched=itemSearched, nameSite=nameSite)
 
     return None
