@@ -23,7 +23,7 @@ Video demo with all the explanations:
 
 ## Run Locally
 
-> __Do not__ put any personal password that you currently use on any site. This site is a test and it’s one of my first projects I do.
+> __Do not__ put any personal password that you currently use on any site. This site is a test and it’s one of my first projects I have done.
 
 Clone the project
 
