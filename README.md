@@ -81,7 +81,7 @@ Now we have two (three with flask_session that is created automatically when you
       - __images__ -> This folder is used for keep the images used on the website.
 
 2. __templates__ 
-     - This folder is used to store all the HTML files, inside there is also another folder that inside it there are 2 HTML files regarding user authentications
+     - This folder is used to store all the HTML files, inside there is also another folder that inside it there are 2 HTML files regarding user authentications.
 
 ## Roadmap
 
