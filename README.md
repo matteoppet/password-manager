@@ -47,9 +47,9 @@ Explanation of each file:
 
       - ```delete``` -> This function deletes the item you want from the database without having a chance to retrieve it.
 
-      - ```account``` -> This function refers to the page named "account" and allows you to see your account information (username and password)
+      - ```account``` -> This function refers to the page named "account" and allows you to see your account information (username and password).
 
-      - ```updateAccount``` -> This is a function very similar to the one called "update" that instead of updating the item, you can update your account information
+      - ```updateAccount``` -> This is a function very similar to the one called "update" that instead of updating the item, you can update your account information.
 
       - ```deleteAccount``` -> This function is also very similar to the one called "delete", but this allows you to delete the account losing all the passwords you have saved.
 
@@ -85,7 +85,7 @@ Now we have two (three with flask_session that is created automatically when you
 
 ## Roadmap
 
-Below, I will list all the changes I want to make to the website.
+Below, I will list all the changes I want to make to the website:
 
 - A URL for the site
 
