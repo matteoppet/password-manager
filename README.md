@@ -9,7 +9,7 @@ Every password saved on the site is encrypted and only you can see it.
 
 ## Demo
 
-Video demo with all the explanations:
+Video demo:
 
 ## Explanation
 Explanation of each file:
