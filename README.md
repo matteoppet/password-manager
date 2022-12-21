@@ -51,13 +51,41 @@ Explanation of each file:
 
       - ```updateAccount``` -> This is a function very similar to the one called "update" that instead of updating the item, you can update your account information
 
-      - ```deleteAccount``` -> This feature is also very similar to the one called "delete", but this allows you to delete the account losing all the passwords you have saved.
+      - ```deleteAccount``` -> This function is also very similar to the one called "delete", but this allows you to delete the account losing all the passwords you have saved.
+
+      - ```search``` -> This function allows you to search for items you own without wasting time searching for a specific item among others, in the search there is only 1 parameter, you can search by name or by email.
   
 5. __database.db__
    - This file contains the database ( created with Sqlite3 ) where every account information and passwords it has are kept. 
 **( all passwords that are kept are encrypted and only you can see decrypted )**
 
+Now we have two (three with flask_session that is created automatically when you access the site starting it locally) folders:
+
+1. __static__
+      
+      - __index.js__
+         - ```passwordCheck``` -> This function checks if the password and password confirmation on the registration page are longer than 7 characters.
+         
+         - ```confirmCheck``` -> This function checks if the password and password confirmation are the same, always on the registration page.
+
+         - ```deleteItem``` -> This function, when you delete an item, makes you appear a request for confirmation for deletion and if the confirmation is confirmed, sends the id of the item you have to the function in the ```views.py``` file.
+
+         - ```copyToClipboard``` -> This function allows you to copy the information you have in an item, through a special button.
+
+         - ```deleteAccount``` -> This is a function exactly the same as the function above DeleteItem, but it sends the id of your account to the function located in the file ```views.py``` to delete your account.
+
+
+      - __style.css__ -> This file is used for formatting the website layout making it more cool.
+
+
+      - __images__ -> This folder is used for keep the images used on the website.
+
+2. __templates__ 
+     - This folder is used to store all the HTML files, inside there is also another folder that inside it there are 2 HTML files regarding user authentications
+
 ## Roadmap
+
+Below, I will list all the changes I want to make to the website.
 
 - A URL for the site
 
