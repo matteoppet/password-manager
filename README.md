@@ -17,16 +17,41 @@ Explanation of each file:
    - This file contains all the setup that Flask will have to start when the server is started, By setting a Secret Key, the settings for the session, database access and the "registration" of two files containing other parts of the site.
 
 2. __helper.py__
-   - This file contains 3 functions that "help" the programmer in some things, the first function is that of login_required that does not allow users to enter certain parts of the site without logging in. 
-As second and third function we have one to encrypt and decrypt messages that we pass through the parameter
+   - This file contains 3 functions that "help" me in some things: 
+
+      - ```login_required``` -> This function does not allow the user to enter certain specified pages without logging in.
+      
+      - ```encryption``` -> This function allows you to encrypt any message you pass through the parameter using the [Cryptography](https://pypi.org/project/cryptography/) library.
+      
+      - ```decryption``` -> This function has the same procedure as the Encryption function, but this instead of encrypting, decrypts the message.
 
 3. __auth.py__
-   - Also this file contains 3 functions that concern user authentication, as first functions there are that of login and registration that allows the user to register and log in the server, while for the third function we have the logout that allows the user to disconnect from their account without losing anything, obviously having the possibility to re-enter the account
+   - Also this file contains 3 functions that concern user authentication:
+
+      - ```login``` -> This function allows access through your credentials to the site where you keep saved passwords.
+
+      - ```register``` -> This function that allows the creation of your account by entering a username and a password.
+
+      - ```logout``` -> This fuction allows you to disconnect from your account without deleting it __(by default the disconnection from your account takes place every 24 hours)__ and to regain access to your passwords you will need to login first.
 
 4. __views.py__ 
-   - This file contains many important functions of the site, specifically contains 9 functions.
-The first function is called index that inside gets all the passwords that the user owns and shows them in the table on the main page of the site, as second we have that call Add that contains the process for the user to create other items containing the password of the site he wants, third function there is that called update that allows the user to update an already existing item, as the fourth function we have that called Secret which is the ability to see all the information you have put of that item, as the fifth functions we have delete which allows the possibility to delete any item, the sixth function is called Account, which allows the user to see his username and password information via a dedicated website page, while then we have as sestima and eighth function that to update your account and delete it losing each item in possession. 
-As last function we have that called Search that allows the user ( through an input in the navbar ) to search for your item that you want specific without wasting time in searching among others.
+   - This file contains many important functions of the site, specifically contains 9 functions:
+
+      - ```index``` -> this function allows you to see all your saved passwords (in a table on the main page) by connecting to the database.
+      
+      - ```add``` -> This function allows you to create items containing all the information you will put together with the password you want to save.
+
+      - ```update``` -> This is a function that allows you to update your item that you already have.
+
+      - ```secret``` -> This function shows you, in a dedicated page, all the information of your item.
+
+      - ```delete``` -> This function deletes the item you want from the database without having a chance to retrieve it.
+
+      - ```account``` -> This function refers to the page named "account" and allows you to see your account information (username and password)
+
+      - ```updateAccount``` -> This is a function very similar to the one called "update" that instead of updating the item, you can update your account information
+
+      - ```deleteAccount``` -> This feature is also very similar to the one called "delete", but this allows you to delete the account losing all the passwords you have saved.
   
 5. __database.db__
    - This file contains the database ( created with Sqlite3 ) where every account information and passwords it has are kept. 
