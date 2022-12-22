@@ -29,12 +29,19 @@
                         <tr>
                             <th scope="col">Username</th>
                             <th scope="col">Password</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody class="table-group-divider">
                             <tr>
                                 <td>{{ data["username"] }}</td>
-                                <td>{{ decryptedPassword }}</td>
+                                <td><input type="password" class="form-control" value="{{ decryptedPassword }}" id="account-password"></td>
+                                <td><button type="button" class="btn btn-secondary btn-lg" onclick="seePasswordAccount();">
+                                        <span class="material-icons" style="line-height: unset;" id="span_text">
+                                            visibility
+                                        </span>
+                                    </button>
+                                </td>
                             </tr>
                     </tbody>
                 </table>

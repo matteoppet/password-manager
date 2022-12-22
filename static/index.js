@@ -31,6 +31,33 @@ function confirmCheck() {
 }
 
 
+function seePasswordLogin() {
+    var password = document.getElementById("login-password");
+
+    if (password.type === "password") {
+        password.type = "text";
+    } else {
+        password.type = "password";
+    }
+}
+
+function seePasswordAccount() {
+    var password = document.getElementById("account-password");
+    var icon = document.getElementById("span_text");
+
+    if (password.type === "password") {
+        password.type = "text";
+
+        icon.innerHTML = "visibility_off";
+
+    } else {
+        password.type = "password";
+
+        icon.innerHTML = "visibility";
+    }
+}
+
+
 function deleteItem(value) {
     
     let askConfirm = confirm("Are you sure you want to delete the password?");

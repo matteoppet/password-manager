@@ -19,6 +19,15 @@
                 <input type="password" class="form-control" id="login-password" name="login-password" placeholder="Enter an password" autocomplete='off' required>
                 <label for="password">Password</label>
             </div>
+
+            <div class="form-check">
+                <input class="form-check-input" id="showPassword" type="checkbox" onclick="seePasswordLogin();">
+                <label class="form-check-label" for="showPassword">
+                    Show Password
+                </label>
+            </div>
+            <br/>
+
             <button type="submit" class="btn btn-primary" id="submit">Login</button>
             <button type="button" class="btn btn-outline-danger" id="modalRegister" data-bs-toggle="modal" data-bs-target="#BackdropRegister">Registration</button>
         </form> 
@@ -36,7 +45,7 @@
             <form action='{{ url_for("auth.register") }}' method='POST' id='registration-form'>
                 <div class="modal-body">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="username" name="username" placeholder="Enter an username" autocomplete='off' required>
+                        <input type="text" class="form-control" id="registration-username" name="username" placeholder="Enter an username" autocomplete='off' required>
                         <label for="username">Username</label>
                     </div>
                     <div class="form-floating mb-3">
