@@ -68,6 +68,8 @@ Now we have two (three with flask_session that is created automatically when you
          
          - ```confirmCheck``` -> This function checks if the password and password confirmation are the same, always on the registration page.
 
+         - ```seePasswordLogin``` and ```seePasswordAccount``` -> These two functions have the same functionality, they allow you to see passwords without the '*', they have the same functionality but in different pages.
+
          - ```deleteItem``` -> This function, when you delete an item, makes you appear a request for confirmation for deletion and if the confirmation is confirmed, sends the id of the item you have to the function in the ```views.py``` file.
 
          - ```copyToClipboard``` -> This function allows you to copy the information you have in an item, through a special button.
@@ -81,7 +83,7 @@ Now we have two (three with flask_session that is created automatically when you
       - __images__ -> This folder is used for keep the images used on the website.
 
 2. __templates__ 
-     - This folder is used to store all the HTML files, inside there is also another folder that inside it there are 2 HTML files regarding user authentications.
+     - This folder is used to store all the HTML files, inside there is also another folder that inside it there is 1 HTML files regarding user authentication.
 
 ## Roadmap
 
