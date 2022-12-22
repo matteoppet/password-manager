@@ -13,6 +13,7 @@ Video demo: https://youtu.be/XsmkNbdKFFs
 
 ## Explanation
 Explanation of each file:
+
 1. __app.py__
    - This file contains all the setup that Flask will have to start when the server is started, By setting a Secret Key, the settings for the session, database access and the "registration" of two files containing other parts of the site.
 
