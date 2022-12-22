@@ -9,9 +9,10 @@ auth = Blueprint('auth', __name__)
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
 
-    session.clear()
-
     if request.method == "POST":
+
+        session.clear()
+
         username = request.form.get("username")
         password = request.form.get("login-password")
         keepLogged = request.form.get("checkbox")
@@ -27,7 +28,6 @@ def login():
         if encryptedPassword != None:
             decryptedPassword = decryption(encryptedPassword).decode()
 
-
         if len(searchUser) != 1 or password != decryptedPassword:
             flash("Username or Password incorrect.", "error")
         else:
@@ -38,7 +38,7 @@ def login():
     return render_template('auth/login.html')
 
 
-@auth.route('/register', methods=['GET', 'POST'])
+@auth.route('/register', methods=['POST'])
 def register():
     if request.method == "POST":
         username = request.form.get("username")
@@ -57,18 +57,15 @@ def register():
         elif password != confirm:
             flash("Passwords doesn't match.", "error")
         else:
-
             encryptedPassword = encryption(password)
 
             db.execute("INSERT INTO users (username, password) VALUES (?, ?)", username, encryptedPassword)
-
+            
             flash("Account Created Successfully.")
 
-            return redirect(url_for('auth.login'))
-        
-        return redirect(url_for('auth.login'))
-    
-    return None
+            return redirect(url_for("auth.login"))
+
+    return redirect(url_for("auth.login"))
 
 
 @auth.route("/logout")

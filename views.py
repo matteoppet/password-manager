@@ -97,7 +97,11 @@ def delete(id):
 def account():
     informationCurrentUser = db.execute("SELECT id, username, password FROM users WHERE id = ?", session["user_id"])
 
-    decryptedPassword = decryption(informationCurrentUser[0]["password"]).decode()
+    decryptedPassword = None
+    try:
+        decryptedPassword = decryption(informationCurrentUser[0]["password"]).decode()
+    except IndexError:
+        pass
 
     return render_template("account.html", informationCurrentUser=informationCurrentUser, decryptedPassword=decryptedPassword)
 
@@ -149,6 +153,8 @@ def deleteAccount(id):
     if request.method == "POST":
         db.execute("DELETE FROM users WHERE id = ?", id)
         db.execute("DELETE FROM secrets WHERE user_id = ?", id)
+
+        session.clear()
 
         return redirect(url_for("auth.login"))
 
