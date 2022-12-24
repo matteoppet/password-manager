@@ -30,9 +30,13 @@ app.register_blueprint(auth, url_prefix="/")
 app.register_blueprint(views, url_prefix="/")
 
 
-# Instances for cryptography library.
-key = Fernet.generate_key()
-fernet = Fernet(key)
+@app.errorhandler(404)
+def not_found(e):
+    return render_template("errors/404.html")
+
+@app.errorhandler(500)
+def internal_server_error(e):
+    return render_template("errors/500.html")
 
 
 if __name__ == '__main__':

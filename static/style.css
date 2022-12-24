@@ -113,3 +113,14 @@
     margin-right: auto !important;
     margin-left: auto !important;
 }
+
+
+/* --------
+   404 Page
+   -------- */
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }   
