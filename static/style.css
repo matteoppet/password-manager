@@ -2,125 +2,101 @@
    ALl stuff 
    --------- */
 .unselectable {
-    -webkit-user-select: none;
-    -webkit-touch-callout: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-
-/* ------------------------ 
-   Registration Modal stuff 
-   ------------------------ */
 /* Modal register is the button in login page for open the modal */
 #modalRegister {
-    margin-top: 10px;
-    height: 40px;
-    font-size: 15px;
-    width: -moz-available;          /* For Mozzila */
-    width: -webkit-fill-available;  /* For Chrome */
-    width: stretch;                 /* Unprefixed */
-    text-align: center;
+  margin-top: 10px;
+  height: 40px;
+  font-size: 15px;
+  width: -moz-available; /* For Mozzila */
+  width: -webkit-fill-available; /* For Chrome */
+  width: stretch; /* Unprefixed */
+  text-align: center;
 }
 
 #registration-username {
-    margin-bottom: 40px;
+  margin-bottom: 40px;
 }
-
 
 #status {
-    max-width: min-content;
+  max-width: min-content;
 }
 
-
-/* ----------- 
-   Login Stuff 
-   ----------- */
 @media (min-width: 500px) {
-    #login-form {
-        width: 250px;
-        margin-right: auto !important;
-        margin-left: auto !important;
-    }
+  #login-form {
+    width: 250px;
+    margin-right: auto !important;
+    margin-left: auto !important;
+  }
 }
 
 #title {
-    padding-top: 50px;
-    padding-bottom: 60px;
-    font-size: 50px;
+  padding-top: 50px;
+  padding-bottom: 60px;
+  font-size: 50px;
 }
 
-#username, #login-password {
-    margin-bottom: 25px;
+#username,
+#login-password {
+  margin-bottom: 25px;
 }
 
 #submit {
-    height: 40px;
-    font-size: 15px;
-    width: -moz-available;          /* For Mozzila */
-    width: -webkit-fill-available;  /* For Chrome */
-    width: stretch;                 /* Unprefixed */
-    text-align: center;
+  height: 40px;
+  font-size: 15px;
+  width: -moz-available; /* For Mozzila */
+  width: -webkit-fill-available; /* For Chrome */
+  width: stretch; /* Unprefixed */
+  text-align: center;
 }
 
-
-/* ----------- 
-   Index Stuff 
-   ----------- */
 #index-phrase {
-    font-size: 16px;
-    padding-top: 30px;
+  font-size: 16px;
+  padding-top: 30px;
 }
 
 #table-passwords {
-    margin-top: 30px;
-    text-align: center;
+  margin-top: 30px;
+  text-align: center;
 }
 
-
-/* ------------ 
-   Update Stuff 
-   ------------ */
 #inputs {
-    font-size: 15px;
-    width: -moz-available;          /* For Mozzila */
-    width: -webkit-fill-available;  /* For Chrome */
-    width: stretch;                 /* Unprefixed */
+  font-size: 15px;
+  width: -moz-available; /* For Mozzila */
+  width: -webkit-fill-available; /* For Chrome */
+  width: stretch; /* Unprefixed */
 }
 
 @media (min-width: 500px) {
-    #inputs {
-        width: 500px;
-        margin-right: auto !important;
-        margin-left: auto !important;
-        margin-bottom: 25px;
-    }
+  #inputs {
+    width: 500px;
+    margin-right: auto !important;
+    margin-left: auto !important;
+    margin-bottom: 25px;
+  }
 }
 
-
-/* ------------ 
-   Profile Stuff 
-   ------------ */
 #table-user {
-    text-align: center;
-    margin-top: 40px;
-    margin-bottom: 40px;
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 
 #account-password {
-    width: min-content;
-    margin-right: auto !important;
-    margin-left: auto !important;
+  width: min-content;
+  margin-right: auto !important;
+  margin-left: auto !important;
 }
 
-
-/* --------
-   404 Page
-   -------- */
 .center {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-  }   
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
