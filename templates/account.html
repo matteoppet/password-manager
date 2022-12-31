@@ -58,6 +58,18 @@
                         <button type="button" class="btn btn-danger" id="deleteUser" value="{{ data['id'] }}" onclick="deleteAccount(this.value);">Delete Account</button>
                     </div>
                 </div>
+
+                <hr>      
+                <p class="mb-3 fw-semibold lh-1" id="sections">Settings</p>
+                
+                <div>
+                    <label>Choose a Theme </label>
+                    <select id="themeSelect" class="form-select">
+                        <option value="light">Light</option>
+                        <option value="dark">dark</option>
+                    </select>
+                </div>
+
             {% endfor %}
         </div>
     </main>

@@ -6,6 +6,12 @@ body {
   color: blue;
 }
 
+#themeSelect {
+  width: min-content;
+  display: inline;
+  margin-left: 10px;
+}
+
 .unselectable {
   -webkit-user-select: none;
   -webkit-touch-callout: none;
