@@ -107,3 +107,28 @@ function deleteAccount(value) {
         })
     }
 }
+
+
+function initThemeSelector() {
+    // DOM Elements
+    const themeSelect = document.getElementById("themeSelect");
+    const htmlTag = document.querySelector("html");
+    const theme = localStorage.getItem("theme");
+
+    // Apply the saved theme on reload
+    if (theme) {
+        htmlTag.setAttribute("data-bs-theme", theme);
+    }
+
+    // Change the attribute and set the item 
+    themeSelect.addEventListener("change", () => {
+        htmlTag.setAttribute("data-bs-theme", themeSelect.value);
+        localStorage.setItem("theme", themeSelect.value);
+    });
+
+    // Apply the value of the select as the theme saved
+    themeSelect.value = theme;
+
+}
+
+initThemeSelector();
