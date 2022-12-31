@@ -15,7 +15,6 @@ def login():
 
         username = request.form.get("username")
         password = request.form.get("login-password")
-        keepLogged = request.form.get("checkbox")
 
         searchUser = db.execute("SELECT id, password FROM users WHERE username = ?", username)
 
@@ -38,7 +37,7 @@ def login():
     return render_template('auth/login.html')
 
 
-@auth.route('/register', methods=['POST'])
+@auth.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == "POST":
         username = request.form.get("username")

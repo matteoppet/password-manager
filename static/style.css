@@ -1,6 +1,11 @@
-/* --------- 
-   ALl stuff 
-   --------- */
+body {
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+#sections {
+  color: blue;
+}
+
 .unselectable {
   -webkit-user-select: none;
   -webkit-touch-callout: none;

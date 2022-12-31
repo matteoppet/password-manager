@@ -21,8 +21,10 @@
                     </a>
                 </div>
             </div>
+
             <hr>
-            <p style="color: blue;" class="mb-3 fw-semibold lh-1">Information Account</p>
+            <p class="mb-3 fw-semibold lh-1" id="sections">Information Account</p>
+            
             {% for data in informationCurrentUser %}
                 <table class="table table-hover table-bordered border" id="table-user">
                     <thead>
@@ -45,26 +47,15 @@
                             </tr>
                     </tbody>
                 </table>
+
                 <hr>      
-                <p style="color: blue;" class="mb-3 fw-semibold lh-1">Action</p>
-                <div class="card" style="margin-top: 40px; margin-bottom: 40px;">
+                <p class="mb-3 fw-semibold lh-1" id="sections">Action</p>
+
+                <div class="card" style="margin-top: 40px; margin-bottom: 40px;" id="card">
                     <div class="card-body">
                         <h5 class="card-title">Delete Account</h5>
                         <p class="card-text">By deleting the account you will lose any saved password and it will not be possible to recover it.</p>
                         <button type="button" class="btn btn-danger" id="deleteUser" value="{{ data['id'] }}" onclick="deleteAccount(this.value);">Delete Account</button>
-                    </div>
-                </div>
-                <hr>      
-                <p style="color: blue;" class="mb-3 fw-semibold lh-1">Settings</p>
-                
-                <div class="hstack gap-3" style="margin-top: 30px;">
-                    <div><label>Choose theme</label></div>
-
-                    <div>
-                        <select class="form-select" id="inlineFormSelectPref" id="selectionThemes" disabled>
-                            <option selected>Light</option>
-                            <option value="1">Dark</option>
-                        </select>
                     </div>
                 </div>
             {% endfor %}

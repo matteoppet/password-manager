@@ -1,9 +1,5 @@
 from flask import redirect, session
 
-import os
-import requests
-import urllib.parse
-
 from functools import wraps
 
 

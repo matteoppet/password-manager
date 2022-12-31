@@ -41,6 +41,7 @@ function seePasswordLogin() {
     }
 }
 
+
 function seePasswordAccount() {
     var password = document.getElementById("account-password");
     var icon = document.getElementById("span_text");
@@ -60,7 +61,7 @@ function seePasswordAccount() {
 
 function deleteItem(value) {
     
-    let askConfirm = confirm("Are you sure you want to delete the password?");
+    const askConfirm = confirm("Are you sure you want to delete the password?");
 
     if (askConfirm === true) {
         $.ajax({
