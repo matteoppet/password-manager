@@ -15,7 +15,7 @@ Video demo: https://youtu.be/Z8jpD8sJ0tk
 Explanation of each file:
 
 1. __app.py__
-   - This file contains all the setup that Flask will have to start when the server is started, By setting a Secret Key, the settings for the session, database access and the "registration" of two files containing other parts of the site.
+   - This file contains all the setup that Flask will have to start when the server is started, By setting a Secret Key, the settings for the session, database access and the "registration" of two files containing other parts of the site. It also has two functions involving 404 and 500 errors.
 
 2. __helper.py__
    - This file contains 3 functions that "help" me in some things: 
