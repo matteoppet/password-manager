@@ -2,21 +2,19 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash,
 from app import db
 from helper import login_required, encryption, decryption
 
-
 auth = Blueprint('auth', __name__)
 
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
-
     if request.method == "POST":
 
         session.clear()
 
-        username = request.form.get("username")
+        email = request.form.get("email")
         password = request.form.get("login-password")
 
-        searchUser = db.execute("SELECT id, password FROM users WHERE username = ?", username)
+        searchUser = db.execute("SELECT id, password FROM users WHERE email = ?", email)
 
         encryptedPassword = None
         for i in searchUser:
@@ -28,7 +26,7 @@ def login():
             decryptedPassword = decryption(encryptedPassword).decode()
 
         if len(searchUser) != 1 or password != decryptedPassword:
-            flash("Username or Password incorrect.", "error")
+            flash("Email or Password incorrect.", "error")
         else:
             session["user_id"] = id
 
@@ -40,17 +38,17 @@ def login():
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == "POST":
-        username = request.form.get("username")
+        email = request.form.get("email")
         password = request.form.get("register-password")
         confirm = request.form.get("confirm")
 
         check = 0
-        for i in db.execute("SELECT username FROM users WHERE username = ?", username):
-            if username == i["username"]:
+        for i in db.execute("SELECT email FROM users WHERE email = ?", email):
+            if email == i["email"]:
                 check = 1
 
         if check == 1:
-            flash("Username already taken.", "error")
+            flash("Email already registered.", "error")
         elif len(password) < 8:
             flash("Password must be greater than 7 characters long.", "error")
         elif password != confirm:
@@ -58,7 +56,7 @@ def register():
         else:
             encryptedPassword = encryption(password)
 
-            db.execute("INSERT INTO users (username, password) VALUES (?, ?)", username, encryptedPassword)
+            db.execute("INSERT INTO users (email, password) VALUES (?, ?)", email, encryptedPassword)
             
             flash("Account Created Successfully.")
 

@@ -10,8 +10,8 @@
     <main class='container-fluid py-5'>
         <div class="container">
             <div class="hstack gap-3">
-                {% for username in informationCurrentUser %}
-                    <div><h1 style="font-size: 45px;">Welcome to your account: {{ username["username"] }}</h1></div>
+                {% for email in informationCurrentUser %}
+                    <div><h1 style="font-size: 45px;">Welcome to your account: {{ email["email"] }}</h1></div>
                 {% endfor %}
                 <div class="ms-auto">
                     <a href="{{ url_for('views.updateAccount') }}" type="button" class="btn btn-warning btn-lg">
@@ -29,14 +29,14 @@
                 <table class="table table-hover table-bordered border" id="table-user">
                     <thead>
                         <tr>
-                            <th scope="col">Username</th>
+                            <th scope="col">Email</th>
                             <th scope="col">Password</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody class="table-group-divider">
                             <tr>
-                                <td>{{ data["username"] }}</td>
+                                <td>{{ data["email"] }}</td>
                                 <td><input type="password" class="form-control" value="{{ decryptedPassword }}" id="account-password" disabled></td>
                                 <td><button type="button" class="btn btn-secondary btn-lg" onclick="seePasswordAccount();">
                                         <span class="material-icons" style="line-height: unset;" id="span_text">
@@ -46,8 +46,8 @@
                                 </td>
                             </tr>
                     </tbody>
-                </table>
-
+                </table>              
+                
                 <hr>      
                 <p class="mb-3 fw-semibold lh-1" id="sections">Action</p>
 
@@ -65,7 +65,7 @@
                 <div>
                     <label>Choose a Theme </label>
                     <select id="themeSelect" class="form-select">
-                        <option value="light">Light</option>
+                        <option value="light">light</option>
                         <option value="dark">dark</option>
                     </select>
                 </div>

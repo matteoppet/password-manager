@@ -1,9 +1,9 @@
 body {
-  font-family: 'Montserrat', sans-serif !important;
+  font-family: 'Roboto', sans-serif !important;
 }
 
 #sections {
-  color: blue;
+  color: rgb(62, 62, 239);
 }
 
 #themeSelect {
