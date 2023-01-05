@@ -94,10 +94,6 @@ Below, I will list all the changes I want to make to the website:
 
 - More security on site
 
-- Dark and Light themes
-
-- Improve the design of the site
-
 ## Run Locally
 
 > __Do not__ put any personal password that you currently use on any site. This site is a test and it’s one of my first projects I have done.
