@@ -95,7 +95,7 @@ def delete(id):
 @views.route("/account", methods=["GET", "POST"])
 @login_required
 def account():
-    informationCurrentUser = db.execute("SELECT id, username, password FROM users WHERE id = ?", session["user_id"])
+    informationCurrentUser = db.execute("SELECT id, email, password FROM users WHERE id = ?", session["user_id"])
 
     decryptedPassword = None
     try:
@@ -111,35 +111,43 @@ def account():
 def updateAccount():
 
     if request.method == "POST":
-        username = request.form.get("username")
+        email = request.form.get("email")
         password = request.form.get("password")
         confirm = request.form.get("confirm")
 
-        checkUsername = {}
-        for i in db.execute("SELECT id, username FROM users WHERE username = ?", username):
-            checkUsername["id"] = i["id"]
-            checkUsername["username"] = i["username"]
 
-        try: 
-            if checkUsername["id"] != session["user_id"]:  
-                flash("Username already taken.", "error")
-        except KeyError:
+        checkEmail = {}
+        for y in db.execute("SELECT id, email FROM users WHERE email = ?", email):
+            checkEmail["id"] = y["id"]
+            checkEmail["emai"] = y["email"]
+
+
+        # Take the id from the checkEmail dictionary and check if the id is equal at the current user id    
+        try:
+            if checkEmail["id"] != session["user_id"]:
+                flash("Email already registered", "error")
+                return redirect(url_for('views.account'))
+        except (RuntimeError, KeyError):
             pass
 
+
         if len(password) < 8:
-            flash("Password must be greater than 7 characters long.", "error")
+                flash("Password must be greater than 7 characters long.", "error")
         elif password != confirm:
             flash("Passwords doesn't match.", "error")
         else:
             encryptedPassword = encryption(password)
 
-            db.execute("UPDATE users SET username = ?, password = ? WHERE id = ?", username, encryptedPassword, session["user_id"])
+            if email != '':
+                db.execute("UPDATE users SET email = ?, password = ? WHERE id = ?", email, encryptedPassword, session["user_id"])
+            else:
+                db.execute("UPDATE users SET email = ?, password = ? WHERE id = ?", email, encryptedPassword, session["user_id"])
 
             flash("User Updated Successfully")
 
             return redirect(url_for('views.account'))
 
-    informationCurrentUser = db.execute("SELECT username, password FROM users WHERE id = ?", session["user_id"])
+    informationCurrentUser = db.execute("SELECT email, password FROM users WHERE id = ?", session["user_id"])
 
     decryptedPassword = decryption(informationCurrentUser[0]["password"]).decode()
 

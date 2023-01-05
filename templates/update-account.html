@@ -34,10 +34,10 @@
 
                 {% for data in informationCurrentUser %}
                     <div class="mb-3" id="inputs">
-                        <label class="form-label">Username</label>
+                        <label class="form-label">Email</label>
                         <div class="form-floating">
-                            <input type="text" class="form-control" id="username-profile" name="username" placeholder="Enter an username" value="{{ data['username'] }}">
-                            <label for="username" class="text-secondary">{{ data["username"] }}</label>
+                            <input type="email" class="form-control" id="email-profile" name="email" placeholder="Enter an email" value="{{ data['email'] }}">
+                            <label for="email" class="text-secondary">{{ data["email"] }}</label>
                         </div>
                     </div>
                     <div class="mb-3" id="inputs">

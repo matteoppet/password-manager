@@ -12,14 +12,15 @@
 
         <form action='{{ url_for("auth.login") }}' method='POST' id='login-form'>
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="username" name="username" placeholder="Enter an username" autocomplete='off' required>
-                <label for="username">Username</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter an email" autocomplete='off' required>
+                <label for="email">Email</label>
             </div>
+
             <div class="form-floating">
                 <input type="password" class="form-control" id="login-password" name="login-password" placeholder="Enter an password" autocomplete='off' required>
                 <label for="password">Password</label>
             </div>
-
+                
             <div class="form-check">
                 <input class="form-check-input" id="showPassword" type="checkbox" onclick="seePasswordLogin();">
                 <label class="form-check-label" for="showPassword">
@@ -29,7 +30,7 @@
             
             <br/>
 
-            <button type="submit" class="btn btn-primary" id="submit" onclick="fprt();">Login</button>
+            <button type="submit" class="btn btn-primary" id="submit">Login</button>
             <button type="button" class="btn btn-outline-danger" id="modalRegister" data-bs-toggle="modal" data-bs-target="#BackdropRegister">Registration</button>
         </form> 
     </div>
@@ -46,8 +47,8 @@
             <form action='{{ url_for("auth.register") }}' method='POST' id='registration-form'>
                 <div class="modal-body">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="registration-username" name="username" placeholder="Enter an username" autocomplete='off' required>
-                        <label for="username">Username</label>
+                        <input type="email" class="form-control" id="registration-email" name="email" placeholder="Enter an email" autocomplete='off' required>
+                        <label for="email">Email</label>
                     </div>
                     <div class="form-floating mb-3">
                         <input type="password" class="form-control" id="register-password" name="register-password" placeholder="Enter an password" onkeyup="passwordCheck();" autocomplete='off' required>
@@ -69,11 +70,11 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary" id="s">Create</button>
+                    <button type="submit" class="btn btn-primary">Create</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
-  
+
 {% endblock %}
