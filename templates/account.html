@@ -11,7 +11,7 @@
         <div class="container">
             <div class="hstack gap-3">
                 {% for email in informationCurrentUser %}
-                    <div><h1 style="font-size: 45px;">Welcome to your account: {{ email["email"] }}</h1></div>
+                    <div><h1 style="font-size: 45px;">User: {{ email["email"] }}</h1></div>
                 {% endfor %}
                 <div class="ms-auto">
                     <a href="{{ url_for('views.updateAccount') }}" type="button" class="btn btn-warning btn-lg">
@@ -22,8 +22,8 @@
                 </div>
             </div>
 
+            <p class="mb-3 fw-semibold lh-1" id="sections" style="margin-top: 20px;">Information Account</p>
             <hr>
-            <p class="mb-3 fw-semibold lh-1" id="sections">Information Account</p>
             
             {% for data in informationCurrentUser %}
                 <table class="table table-hover table-bordered border" id="table-user">
@@ -48,8 +48,8 @@
                     </tbody>
                 </table>              
                 
-                <hr>      
                 <p class="mb-3 fw-semibold lh-1" id="sections">Action</p>
+                <hr>      
 
                 <div class="card" style="margin-top: 40px; margin-bottom: 40px;" id="card">
                     <div class="card-body">
@@ -59,18 +59,53 @@
                     </div>
                 </div>
 
-                <hr>      
                 <p class="mb-3 fw-semibold lh-1" id="sections">Settings</p>
+                <hr>      
                 
                 <div>
-                    <label>Choose a Theme </label>
+                    <label style="margin-bottom: 10px;" class="form-label">Choose a Theme</label>
                     <select id="themeSelect" class="form-select">
                         <option value="light">light</option>
                         <option value="dark">dark</option>
                     </select>
                 </div>
-
+                <br/>
+                <div>
+                    <div class="form-check form-check-inline" id="formCheckLog">
+                        <input class="form-check-input" type="checkbox" value="True" id="checkBoxEmail" onclick="storeEmailUser();">
+                        <label class="form-check-label" for="checkBoxEmail" style="margin-left: 2px;"> 
+                            Store email
+                        </label>
+                    </div>
+                    <a data-bs-toggle="collapse" href="#collapseCheckbox" role="button" aria-expanded="false" aria-controls="collapseCheckbox">
+                        <span class="material-symbols-outlined" id="spanHelp">
+                            help
+                        </span>
+                    </a>
+                    <div class="collapse" id="collapseCheckbox" style="margin-top: 10px;">
+                        <div class="card card-body" id="cardCollapse">
+                            If you select this option, you consent to having your email stored locally on your browser so that all you need to enter when logging in is your password.
+                            <br/><br/>
+                            By deselecting this option, your email will be removed from local storage.
+                        </div>
+                    </div>
+                </div>
             {% endfor %}
+        
+            <script>
+                function storeEmailUser() {
+                    const email = {{ email_user | tojson }};
+                    const checkbox = document.getElementById("checkBoxEmail");
+                    if (checkbox.checked === true) {
+                        localStorage.setItem("email-user", email)
+                    } else {
+                        localStorage.setItem('email-user', []);
+                    }
+
+                    console.log(localStorage.getItem("email-user"))
+                }
+            </script>
+                
         </div>
     </main>
 {% endblock %}

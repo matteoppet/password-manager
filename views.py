@@ -103,7 +103,9 @@ def account():
     except IndexError:
         pass
 
-    return render_template("account.html", informationCurrentUser=informationCurrentUser, decryptedPassword=decryptedPassword)
+    email_user = session["email"]
+
+    return render_template("account.html", informationCurrentUser=informationCurrentUser, decryptedPassword=decryptedPassword, email_user=email_user)
 
 
 @views.route("/update-account", methods=["GET", "POST"])
@@ -185,4 +187,14 @@ def search():
 
         return render_template("searched.html", itemSearched=itemSearched, nameSite=nameSite)
 
+    return None
+
+@views.route("/closeWindow", methods=["GET", "POST"])
+def close_window():
+    if request.method == "POST":
+        
+        session["user_id"] = None
+
+        return redirect(url_for("views.login"))
+    
     return None

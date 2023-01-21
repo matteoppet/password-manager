@@ -11,10 +11,17 @@
         <h1 id='title' class='unselectable text-center'>Axiom</h1>
 
         <form action='{{ url_for("auth.login") }}' method='POST' id='login-form'>
+
             <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="email" name="email" placeholder="Enter an email" autocomplete='off' required>
+                <input type="email" class="form-control" id="email-r" name="email" placeholder="Enter an email" autocomplete='off' value="" required>
                 <label for="email">Email</label>
             </div>
+
+            <script>
+                const email = document.getElementById("email-r");
+
+                email.value = localStorage.getItem("email-user");
+            </script>
 
             <div class="form-floating">
                 <input type="password" class="form-control" id="login-password" name="login-password" placeholder="Enter an password" autocomplete='off' required>
@@ -32,7 +39,7 @@
 
             <button type="submit" class="btn btn-primary" id="submit">Login</button>
             <button type="button" class="btn btn-outline-danger" id="modalRegister" data-bs-toggle="modal" data-bs-target="#BackdropRegister">Registration</button>
-        </form> 
+        </form>
     </div>
 </main>
   
@@ -47,7 +54,7 @@
             <form action='{{ url_for("auth.register") }}' method='POST' id='registration-form'>
                 <div class="modal-body">
                     <div class="form-floating mb-3">
-                        <input type="email" class="form-control" id="registration-email" name="email" placeholder="Enter an email" autocomplete='off' required>
+                        <input type="email" class="form-control" id="registration-email" name="registration-email" placeholder="Enter an email" autocomplete='off' required>
                         <label for="email">Email</label>
                     </div>
                     <div class="form-floating mb-3">

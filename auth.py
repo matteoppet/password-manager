@@ -9,8 +9,6 @@ auth = Blueprint('auth', __name__)
 def login():
     if request.method == "POST":
 
-        session.clear()
-
         email = request.form.get("email")
         password = request.form.get("login-password")
 
@@ -29,6 +27,7 @@ def login():
             flash("Email or Password incorrect.", "error")
         else:
             session["user_id"] = id
+            session["email"] = email
 
             return redirect("/")
 
@@ -38,7 +37,7 @@ def login():
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == "POST":
-        email = request.form.get("email")
+        email = request.form.get("registration-email")
         password = request.form.get("register-password")
         confirm = request.form.get("confirm")
 
@@ -59,6 +58,8 @@ def register():
             db.execute("INSERT INTO users (email, password) VALUES (?, ?)", email, encryptedPassword)
             
             flash("Account Created Successfully.")
+
+            session["email"] = email
 
             return redirect(url_for("auth.login"))
 

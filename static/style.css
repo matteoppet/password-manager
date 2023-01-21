@@ -2,14 +2,30 @@ body {
   font-family: 'Roboto', sans-serif !important;
 }
 
+h1 {
+  font-family: 'Archivo', sans-serif;
+}
+
 #sections {
   color: rgb(62, 62, 239);
 }
 
 #themeSelect {
-  width: min-content;
-  display: inline;
-  margin-left: 10px;
+  width: 50%;
+}
+
+#formCheckLog {
+  margin-top: 10px;
+}
+
+#spanHelp {
+  font-size: 21px;
+  vertical-align: middle;
+}
+
+#cardCollapse {
+  border-left-width: 5px;
+  border-left-color: #d9534f;
 }
 
 .unselectable {
@@ -31,7 +47,7 @@ body {
   text-align: center;
 }
 
-#registration-username {
+#registration-email {
   margin-bottom: 40px;
 }
 

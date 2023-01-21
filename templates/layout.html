@@ -19,11 +19,19 @@
     <!-- Google icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,700,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
     <!-- Google Fonts -->
+        <!-- Roboto Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
+
+        <!-- Archivo Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600&display=swap" rel="stylesheet">
+
 
     <!-- JS files -->
     <script defer src="/static/index.js"></script>
@@ -31,37 +39,39 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{{ url_for('views.index') }}">
-                <img src="/static/images/logoipsum-245.svg" alt="Axiom" width="30" height="24">
-            </a>          
-            {% if session["user_id"] %}
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{ url_for('views.account') }}">Account</a>
-                        </li>
-                    </ul>
-                    <div class="hstack gap-3">
-                        <div class="ms-auto">
-                            <form class="d-flex" role="search" action="{{ url_for('views.search') }}" method="POST">
-                                <input class="form-control me-2" type="search" placeholder="Search: Name or Email" aria-label="Search" id="search" name="search">
-                                <button class="btn btn-success" type="submit">Search</button>
-                            </form>
-                        </div>
-                        <div class="vr"></div>
-                        <div>
-                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</button>
+    <div class='container'>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{{ url_for('views.index') }}">
+                    <img src="/static/images/logoipsum-245.svg" alt="Axiom" width="30" height="24">
+                </a>          
+                {% if session["user_id"] %}
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{{ url_for('views.account') }}">Account</a>
+                            </li>
+                        </ul>
+                        <div class="hstack gap-3">
+                            <div class="ms-auto">
+                                <form class="d-flex" role="search" action="{{ url_for('views.search') }}" method="POST">
+                                    <input class="form-control me-2" type="search" placeholder="Search: Name or Email" aria-label="Search" id="search" name="search">
+                                    <button class="btn btn-success" type="submit">Search</button>
+                                </form>
+                            </div>
+                            <div class="vr"></div>
+                            <div>
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            {% endif %}
-        </div>
-    </nav>
+                {% endif %}
+            </div>
+        </nav>
+    </div>
 
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
@@ -81,10 +91,10 @@
         {% endif %}
     {% endwith %}
     
-    
-    {% block body %}
-    {% endblock %}
-
+    <div class="container" id="app-user">
+        {% block body %}
+        {% endblock %}
+    </div>
 
     <!-- Modal Logout -->
     <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
