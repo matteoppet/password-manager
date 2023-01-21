@@ -95,6 +95,8 @@ function deleteAccount(value) {
     
     let askConfirm = confirm("Are you sure you want to delete your account?");
 
+    localStorage.setItem('email-user', []);
+
     if (askConfirm === true) {
         $.ajax({
             type:'POST',
@@ -132,3 +134,18 @@ function initThemeSelector() {
 }
 
 initThemeSelector();
+
+
+
+function checkBoxEmail() {
+    const ls = localStorage.getItem("email-user");
+    const checkbox = document.getElementById("checkBoxEmail");
+
+    if (ls === '') {
+        checkbox.checked = false;
+    } else {
+        checkbox.checked = true;
+    }
+}
+
+checkBoxEmail()

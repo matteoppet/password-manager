@@ -1,4 +1,4 @@
-from flask import Flask, render_template, session
+from flask import Flask, render_template
 from cs50 import SQL
 from flask_session import Session
 
@@ -18,7 +18,7 @@ def create_app():
     app.config["SESSION_PERMANENT"] = False
     app.config["SESSION_TYPE"] = "filesystem"
 
-    app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=1)
+    app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(hours=2)
     Session(app) 
 
 
