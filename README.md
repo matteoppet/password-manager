@@ -1,125 +1,82 @@
 # Axiom
 
-A web-based password manager written in Flask.
+Axiom is a web-based password manager written in Flask. It allows you to easily and securely save your passwords. Every password saved on the site is encrypted and only accessible to you.
 
-Axiom is a password manager that allows you to save every password you want easily and safely. 
-Every password saved on the site is encrypted and only you can see it.
-
-- This site is a project for the Final Project of the __CS50x Course__.
+This project was developed as the Final Project for the CS50x Course.
 
 ## Demo
 
-Video demo: https://youtu.be/Z8jpD8sJ0tk
+You can watch a video demo of the project [here](https://youtu.be/Z8jpD8sJ0tk).
 
-## Explanation
+## Project Structure
+
 Explanation of each file:
 
-1. __app.py__
-   - This file contains all the setup that Flask will have to start when the server is started, By setting a Secret Key, the settings for the session, database access , and the "registration" of two files containing other parts of the site. It also has two functions involving 404 and 500 errors.
+1. **app.py**: This file contains the setup for Flask, including the secret key, session settings, database access, and registration of other site files. It also handles 404 and 500 error pages.
 
-2. __helper.py__
-   - This file contains 3 functions that "help" me in some things: 
+2. **helper.py**: This file contains helper functions used throughout the project:
+   - `login_required`: This function prevents unauthorized access to specific pages by requiring users to log in.
+   - `encryption`: This function uses the [Cryptography](https://pypi.org/project/cryptography/) library to encrypt messages passed as parameters.
+   - `decryption`: This function decrypts messages using the same encryption procedure.
 
-      - ```login_required``` -> This function does not allow the user to enter certain specified pages without logging in.
-      
-      - ```encryption``` -> This function allows you to encrypt any message you pass through the parameter using the [Cryptography](https://pypi.org/project/cryptography/) library.
-      
-      - ```decryption``` -> This function has the same procedure as the Encryption function, but this instead of encrypting, decrypts the message.
+3. **auth.py**: This file contains functions related to user authentication:
+   - `login`: Allows users to log in using their credentials.
+   - `register`: Enables users to create an account by providing a username and password.
+   - `logout`: Logs out the user, requiring them to log in again to access their passwords.
 
-3. __auth.py__
-   - Also this file contains 3 functions that concern user authentication:
+4. **views.py**: This file contains important functions of the site, including:
+   - `index`: Displays all saved passwords in a table on the main page by connecting to the database.
+   - `add`: Allows users to create items containing information along with the password they want to save.
+   - `update`: Enables users to update their existing items.
+   - `secret`: Shows all information for a specific item on a dedicated page.
+   - `delete`: Deletes a selected item from the database without a chance for recovery.
+   - `account`: Displays the account information (username and password) on the "account" page.
+   - `updateAccount`: Allows users to update their account information.
+   - `deleteAccount`: Deletes the user account, along with all saved passwords.
+   - `search`: Enables users to search for specific items by name or email.
 
-      - ```login``` -> This function allows access through your credentials to the site where you keep saved passwords.
+5. **database.db**: This file contains the SQLite3 database where account information and encrypted passwords are stored. (Note: All passwords are encrypted, and only the user can decrypt and view them.)
 
-      - ```register``` -> This function that allows the creation of your account by entering a username and a password.
+The project also includes two folders:
 
-      - ```logout``` -> This fuction allows you to disconnect from your account without deleting it __(by default the disconnection from your account takes place every 24 hours)__ and to regain access to your passwords you will need to login first.
+1. **static**: This folder contains the JavaScript file, `index.js`, which includes functions for various site functionalities, such as password validation, password visibility toggling, item deletion confirmation, copying item information to the clipboard, and account deletion confirmation. It also includes the `style.css` file for website styling, as well as an `images` folder for storing website images.
 
-4. __views.py__ 
-   - This file contains many important functions of the site, specifically contains 9 functions:
-
-      - ```index``` -> this function allows you to see all your saved passwords (in a table on the main page) by connecting to the database.
-      
-      - ```add``` -> This function allows you to create items containing all the information you will put together with the password you want to save.
-
-      - ```update``` -> This is a function that allows you to update your item that you already have.
-
-      - ```secret``` -> This function shows you, in a dedicated page, all the information of your item.
-
-      - ```delete``` -> This function deletes the item you want from the database without having a chance to retrieve it.
-
-      - ```account``` -> This function refers to the page named "account" and allows you to see your account information (username and password).
-
-      - ```updateAccount``` -> This is a function very similar to the one called "update" that instead of updating the item, you can update your account information.
-
-      - ```deleteAccount``` -> This function is also very similar to the one called "delete", but this allows you to delete the account losing all the passwords you have saved.
-
-      - ```search``` -> This function allows you to search for items you own without wasting time searching for a specific item among others, in the search there is only 1 parameter, you can search by name or by email.
-  
-5. __database.db__
-   - This file contains the database ( created with Sqlite3 ) where every account information and passwords it has are kept. 
-**( all passwords that are kept are encrypted and only you can see decrypted )**
-
-Now we have two (three with flask_session that is created automatically when you access the site starting it locally) folders:
-
-1. __static__
-      
-      - __index.js__
-         - ```passwordCheck``` -> This function checks if the password and password confirmation on the registration page are longer than 7 characters.
-         
-         - ```confirmCheck``` -> This function checks if the password and password confirmation are the same, always on the registration page.
-
-         - ```seePasswordLogin``` and ```seePasswordAccount``` -> These two functions have the same functionality, they allow you to see passwords without the '*', they have the same functionality but in different pages.
-
-         - ```deleteItem``` -> This function, when you delete an item, makes you appear a request for confirmation for deletion and if the confirmation is confirmed, sends the id of the item you have to the function in the ```views.py``` file.
-
-         - ```copyToClipboard``` -> This function allows you to copy the information you have in an item, through a special button.
-
-         - ```deleteAccount``` -> This is a function exactly the same as the function above DeleteItem, but it sends the id of your account to the function located in the file ```views.py``` to delete your account.
-
-
-      - __style.css__ -> This file is used for formatting the website layout making it more cool.
-
-
-      - __images__ -> This folder is used for keep the images used on the website.
-
-2. __templates__ 
-     - This folder is used to store all the HTML files, inside there is also another folder that inside it there is 1 HTML files regarding user authentication.
+2. **templates**: This folder contains all the HTML files, including a subfolder for user authentication-related templates.
 
 ## Roadmap
 
-Below, I will list all the changes I want to make to the website:
+Below are the planned improvements for the website:
 
-- A URL for the site
+- Assign a dedicated URL for the site.
+- Implement additional security measures.
 
-- More security on site
+## Running Locally
 
-## Run Locally
+Please note that this project is for educational purposes and should not be used to store personal passwords used on other sites.
 
-> __Do not__ put any personal password that you currently use on any site. This site is a test and it’s one of my first projects I have done.
+To run the project locally, follow these steps:
 
-Clone the project
+1. Clone the project repository:
 
-```bash
-  git clone https://(link-to-project)
-```
+   ```bash
+   git clone https://github.com/your-username/your-repo.git
 
-Go to the project directory
+2. Go to the project directory
 
-```bash
-  cd my-project
-```
+   ```bash
+     cd my-project
+   ```
 
-Install dependencies
+3. Install dependencies
 
-```bash
-  1) pip install Flask
-  2) pip install cryptography
-  3) pip install cs50
-```
+   ```bash
+     1) pip install Flask
+     2) pip install cryptography
+     3) pip install cs50
+   ```
 
-Start the server
+4. Start the server
 
-```bash
-  python3 -m flask run
-```
+   ```bash
+     python3 -m flask run
+   ```
