@@ -43,13 +43,6 @@ The project also includes two folders:
 
 2. **templates**: This folder contains all the HTML files, including a subfolder for user authentication-related templates.
 
-## Roadmap
-
-Below are the planned improvements for the website:
-
-- Assign a dedicated URL for the site.
-- Implement additional security measures.
-
 ## Running Locally
 
 Please note that this project is for educational purposes and should not be used to store personal passwords used on other sites.
